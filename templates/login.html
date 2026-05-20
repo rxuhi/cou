@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>정의여고 커뮤니티</title>
+</head>
+<body class="container text-center" style="background-color: #fff9fb;">
+    <div class="login-box" style="background: white; padding: 40px; border-radius: 30px; margin: 100px auto; max-width: 400px; box-shadow: 0 10px 30px rgba(255,182,193,0.2);">
+        <h5 style="color: #ff8fa3; font-weight: bold;">🌸 정의여고 익명 커뮤니티 🌸</h5>
+        <h2 style="margin-bottom: 30px;">당신의 MBTI를<br>알려주세요 🐾</h2>
+        <form action="/login" method="post">
+            <select name="mbti" class="form-select mb-3" style="border-radius: 15px; padding: 10px;">
+                <option value="INFJ">INFJ</option>
+                <option value="INFP">INFP</option>
+                <option value="ISTP">ISTP</option>
+                <option value="ISTJ">ISTJ</option>
+                <option value="ISFP">ISFP</option>
+                <option value="ISFJ">ISFJ</option>
+                <option value="INTP">INTP</option>
+                <option value="INTJ">INTJ</option>
+                <option value="ESTP">ESTP</option>
+                <option value="ESTJ">ESTJ</option>
+                <option value="ESFP">ESFP</option>
+                <option value="ESFJ">ESFJ</option>
+                <option value="ENTP">ENTP</option>
+                <option value="ENTJ">ENTJ</option>
+                <option value="ENFJ">ENFJ</option>
+                <option value="ENFP">ENFP</option>
+            </select>
+            <br>
+            <button type="submit" class="btn-primary" style="background: #ffcc00; border: none; padding: 10px 30px; border-radius: 20px; font-weight: bold;">입장하기</button>
+        </form>
+    </div>
+</body>
+</html>

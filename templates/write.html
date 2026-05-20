@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>글쓰기</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="write-container">
+
+    <h1>✍ 글쓰기</h1>
+
+</body>
+</html>
+
+<body class="container">
+    <div class="write-box" style="max-width: 600px; margin: 50px auto; background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 40px rgba(255,182,193,0.15);">
+        <h3 class="text-center mb-5" style="color: #ff8fa3; font-weight: bold;">📝 새로운 이야기 작성</h3>
+        
+        <form action="/write" method="post">
+            <!-- 1. 카테고리 -->
+            <div class="mb-4">
+                <label class="form-label small fw-bold text-muted">카테고리 선택</label>
+                <select name="category" class="form-select custom-input">
+                    <option value="인간관계">🤝 인간관계</option>
+                    <option value="공부">📚 공부</option>
+                    <option value="진로">🎯 진로</option>
+                    <option value="기타">🎈 기타</option>
+                </select>
+            </div>
+            
+            <!-- 2. 제목 -->
+            <div class="mb-4">
+                <label class="form-label small fw-bold text-muted">제목</label>
+                <input type="text" name="title" class="form-control custom-input" placeholder="제목을 입력해주세요" required>
+            </div>
+            
+            <!-- 3. 내용 -->
+            <div class="mb-4">
+                <label class="form-label small fw-bold text-muted">내용</label>
+                <textarea name="content" class="form-control custom-input" placeholder="따뜻한 이야기를 들려주세요..." required 
+                          style="height: 200px; resize: none;"></textarea>
+            </div>
+            
+            <!-- 4. 삭제 비밀번호 -->
+            <div class="mb-5">
+                <label class="form-label small fw-bold text-muted">삭제 비밀번호</label>
+                <input type="password" name="password" class="form-control custom-input" placeholder="비밀번호 4자리" required>
+            </div>
+            
+            <div class="d-flex gap-2">
+                <a href="/" class="btn btn-light flex-grow-1" style="border-radius: 15px; padding: 12px;">취소</a>
+                <button type="submit" class="write-btn flex-grow-2" style="border:none; width: 100%;">등록하기</button>
+            </div>
+        </form>
+    </div>
+</body>

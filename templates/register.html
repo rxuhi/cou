@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="auth-container">
+
+<h1>✨ 회원가입</h1>
+
+<form method="POST">
+
+<input type="text" name="username" placeholder="아이디">
+
+<input type="password" name="password" placeholder="비밀번호">
+
+<select name="mbti">
+<option>INTJ</option>
+<option>INTP</option>
+<option>ENTP</option>
+<option>ENFP</option>
+<option>INFJ</option>
+<option>ISFP</option>
+</select>
+
+<button type="submit">가입하기</button>
+
+</form>
+
+</div>
+
+</body>
+</html>

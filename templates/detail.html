@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }} - 상세내용</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container detail-container">
+        <!-- 상단 헤더 -->
+        <div class="top-bar">
+            <button onclick="location.href='/'" class="back-btn">⬅️ 뒤로가기</button>
+            <span class="badge-category">{{ post.category }}</span>
+        </div>
+
+        <!-- 게시글 본문 섹션 -->
+        <div class="post-detail-card">
+            <div class="post-header">
+                <h1 class="post-detail-title">{{ post.title }}</h1>
+                <div class="post-meta">
+                    <span class="post-mbti">{{ post.mbti }}의 이야기</span>
+                </div>
+            </div>
+            
+            <div class="post-detail-content">
+                {{ post.content }}
+            </div>
+            
+            <!-- 공감 버튼 섹션 -->
+            <div class="like-section">
+                <form action="/like/{{ post.id }}" method="POST">
+                {% if post.id in session.get('liked_posts', []) %}
+                 <!-- 이미 눌렀을 때: 버튼을 비활성화하거나 색상을 변경 -->
+                    <button type="button" class="like-btn already-liked" onclick="alert('이미 공감하셨습니다!')">
+                        <span class="heart">❤️</span> 공감완료 <strong>{{ post.likes }}</strong>
+                    </button>
+                    {% else %}
+                 <!-- 아직 안 눌렀을 때 -->
+                   <button type="submit" class="like-btn">
+                         <span class="heart">🤍</span> 공감하기 <strong>{{ post.likes }}</strong>
+                   </button>
+                   {% endif %}
+                </form>
+            </div>
+
+            <!-- 삭제 섹션 -->
+            <div class="delete-section">
+                <form action="/delete/{{ post.id }}" method="POST" class="delete-form">
+                    <input type="password" name="password" placeholder="비밀번호" required>
+                    <button type="submit" class="del-btn">삭제하기</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- 답변(댓글) 섹션 -->
+        <div class="reply-section">
+            <h3 class="reply-count">💬 답변 <strong>{{ post.reply_count }}</strong>개</h3>
+            
+            <div class="reply-list">
+                {% if not replies %}
+                    <p class="empty-msg">아직 답변이 없어요. 따뜻한 한마디를 남겨주세요!</p>
+                {% endif %}
+                {% for reply in replies %}
+                <div class="reply-item">
+                    <div class="reply-top">
+                        <span class="reply-mbti">{{ reply.mbti }}</span>
+                    </div>
+                    <p class="reply-content">{{ reply.content }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- 답변 작성 폼 -->
+            <form action="/reply/{{ post.id }}" method="POST" class="reply-form">
+                <textarea name="content" placeholder="공감과 위로의 답변을 남겨주세요." required></textarea>
+                <button type="submit">답변 등록하기 💌</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
