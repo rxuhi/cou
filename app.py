@@ -4,7 +4,7 @@ from flask import Flask, render_template, request, redirect, session, abort
 app = Flask(__name__)
 app.secret_key = "jeongui_high_school"
 
-# --- DB 초기 설정 (하나로 통합) ---
+# --- DB 초기 설정  ---
 def init_db():
     conn = sqlite3.connect('database.db')
     c = conn.cursor()
@@ -25,7 +25,7 @@ init_db()
 # --- 비속어 검열 함수 ---
 def filter_text(text):
     if not text: return ""
-    banned = ["나쁜말1", "나쁜말2"] # 여기에 금지어를 추가하세요
+    banned = ["나쁜말1", "나쁜말2"] 
     for word in banned:
         text = text.replace(word, "♥")
     return text
@@ -133,7 +133,7 @@ def like_post(post_id):
     conn.commit()
     conn.close()
 
-    # 세션에 해당 게시글 ID 추가 (수정 가능한 리스트 처리를 위해 복사 후 저장)
+    # 세션에 해당 게시글 ID 추가 
     liked_list = session['liked_posts']
     liked_list.append(post_id)
     session['liked_posts'] = liked_list
